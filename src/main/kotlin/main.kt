@@ -57,14 +57,13 @@ object NoteService : NoteAndCommentService<Note, Comment> {
                 return comments.last()
             }
         }
-        throw NoteNotFoundException("Заметка $idNote не найдена!")
+        throw NoteNotFoundException("Заметка не найдена!")
     }
 
     override fun update(idNote: Int, newNote: Note): Boolean {
         for ((index, note) in notes.withIndex()){
             if (notes[index].idNote == newNote.idNote) {
                 notes[index] = note.copy(
-
                     idNote = note.idNote,
                     idOwner = note.idOwner,
                     titleNote = note.titleNote,
@@ -179,34 +178,34 @@ class NoteNotFoundException(message: String) : RuntimeException(message)
 class CommentNotFoundException(message: String) : RuntimeException(message)
 fun main() {
 
-//    val note1 = Note(1, 1, "Заметка 1", "Скоро Весна", false)
-//    val note2 = Note(2, 2, "Заметка 2", "Скоро Лето", false)
-//    val note3 = Note(3, 1, "Заметка 3", "Скоро Осень", false)
-//    NoteService.add(note1)
-//    NoteService.add(note2)
-//    NoteService.add(note3)
-//    NoteService.print()
-//
-//    NoteService.delete(3)
-//    NoteService.read(1)
-//    NoteService.edit(2, newNote = Note(2, 2, "Заметка 2 ИСПРАВЛЕНА", "СКОРО ЛЕТО"))
-//    NoteService.print()
-//
-//
-//    val comment1 = Comment(1, 1, "Точно весна?")
-//    NoteService.createComment(1, comment1)
-//    NoteService.update(1, note1)
-//    val comment2 = Comment(2, 2, "Уверен?")
-//    NoteService.createComment(2, comment2)
-//    NoteService.update(2, note2)
-//    val comment3 = Comment(3, 3, "Я ЗНАЮ")
-//    NoteService.createComment(3, comment3)
-//    NoteService.update(3, note3)
-//    NoteService.print()
-//
-//    NoteService.editComment(2, newNote = Note(comment = Comment(2, 2, "Я точно ЗНАЮ")))
-//    NoteService.update(2, note3)
-//    NoteService.restore(3)
-//    NoteService.print()
+    val note1 = Note(1, 1, "Заметка 1", "Скоро Весна", false)
+    val note2 = Note(2, 2, "Заметка 2", "Скоро Лето", false)
+    val note3 = Note(3, 1, "Заметка 3", "Скоро Осень", false)
+    NoteService.add(note1)
+    NoteService.add(note2)
+    NoteService.add(note3)
+    NoteService.print()
+
+    NoteService.delete(3)
+    NoteService.read(1)
+    NoteService.edit(2, newNote = Note(2, 2, "Заметка 2 ИСПРАВЛЕНА", "СКОРО ЛЕТО"))
+    NoteService.print()
+
+
+    val comment1 = Comment(1, 1, "Точно весна?")
+    NoteService.createComment(1, comment1)
+    NoteService.update(1, note1)
+    val comment2 = Comment(2, 2, "Уверен?")
+    NoteService.createComment(2, comment2)
+    NoteService.update(2, note2)
+    val comment3 = Comment(3, 3, "Я ЗНАЮ")
+    NoteService.createComment(3, comment3)
+    NoteService.update(3, note3)
+    NoteService.print()
+
+    NoteService.editComment(2, newNote = Note(comment = Comment(2, 2, "Я точно ЗНАЮ")))
+    NoteService.update(2, note3)
+    NoteService.restore(3)
+    NoteService.print()
 
 }
